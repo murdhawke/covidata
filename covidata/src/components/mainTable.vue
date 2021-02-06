@@ -1,40 +1,50 @@
 <template>
     <div id="mainTable">
+        <h1>Search</h1>
+        <vs-row w="8">
+            <vs-col class="search-input" w="7" offset="5">
+            <vs-input  v-model="searchString" placeholder="Country Name">
+                <template #icon>
+                    <box-icon name='search' color='rgba(0,0,0,0.25)' ></box-icon>
+                </template>
+            </vs-input>
+        </vs-col>
+        </vs-row>
         <vs-table striped v-model="selected">
             <template #thead>
                 <vs-tr>
                     <vs-th>
                         Country
                     </vs-th >
-                    <vs-th sort @click="countries = $vs.sortData($event, countries, 'totalDeaths')">
+                    <vs-th sort @click="rawData = $vs.sortData($event, rawData, 'totalDeaths')">
                         Total Cases
                     </vs-th>
-                    <vs-th sort @click="countries = $vs.sortData($event, countries, 'totalDeaths')">
+                    <vs-th sort @click="rawData = $vs.sortData($event, rawData, 'totalDeaths')">
                         Total Deaths
                     </vs-th>
-                    <vs-th sort @click="countries = $vs.sortData($event, countries, 'totalRecovered')">
+                    <vs-th sort @click="rawData = $vs.sortData($event, rawData, 'totalRecovered')">
                         Total Recovered
                     </vs-th>
                 </vs-tr>
             </template>
             <template #tbody>
-                <vs-tr :key="country" v-for="(tr, country) in $vs.getPage(countries, page, max)" :data="tr" :is-selected="selected == tr" >
-                    <vs-td>
-                        {{ tr.continent }}
+                <vs-tr :key="i" v-for="(r, i) in $vs.getPage(rawData, page, max)" :data="r" :is-selected="selected == r" >
+                    <vs-td >
+                        {{ r.country}}
                     </vs-td>
-                     <vs-td>
-                        {{ tr.country }}
+                     <vs-td >
+                        {{ r.cases.total.toString()}}
                     </vs-td>
-                     <vs-td>
-                        {{ tr.death.new }}
+                     <vs-td >
+                        {{ r.deaths.total}}
                     </vs-td>
-                    <vs-td>
-                        {{ tr.population }}
+                    <vs-td >
+                        {{ r.cases.recovered}} 
                     </vs-td>
                 </vs-tr>
             </template>
             <template #footer>
-                <vs-pagination v-model="page" :length="$vs.getLength(countries, max)" />
+                <vs-pagination v-model="page" :length="$vs.getLength(rawData, max)" />
             </template>
         </vs-table>
         <span class="data">
@@ -46,38 +56,56 @@
 </template>
 
 <script>
-//import axios from 'axios'
-//import axios from 'axios'
+import axios from 'axios'
 import apijs from '../configs/api'
 export default {
     data() {
         return {
             page:1,
-            max:10,
+            max:20,
+            search:'',
             selected:null,
-            countries: []
+            searchString:'',
+            rawData:[]
         }
     },
+    methods: {
+ 
+    },
     created() {
-      apijs.response.data  = this.countries
+       let vm = this
+        axios.request(apijs.options).then(function (response) {
+            vm.rawData =response.data.response
+            return vm.rawData
+        }).catch(function (error) {
+            console.error(error);
+        })
+    },
+    mounted() {
+        console.log(this.searchString)
     }
-}
+    }
 </script>
 
 <style >
 .vs-table {
-    height: 500px;
+    height: 80%;
     font-size: 11px;
-    text-align: left;
 }
 .vs-table-content {
-    padding-left: 70px;
-    padding-right: 50px;
+    padding: 50px;
 }
 div.vs-table__th__content {
     font-size: 15px;
+    
 }
-.vs-table__thead, .vs-table__footer {
-   background: white;
+.vs-table__td {
+    line-height: 20px;
+   text-align: left;
+
 }
+.vs-input-content {
+    justify-content: center;
+}
+
 </style>

@@ -16,4 +16,9 @@ export default {
 #app {
   padding: 0;
 }
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    color: #485e6b;
+}
 </style>

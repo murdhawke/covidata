@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import Vuesax from 'vuesax'
 import Axios from 'axios'
+import 'boxicons'
 
 Vue.config.productionTip = false
 Vue.use(Axios)

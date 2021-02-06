@@ -1,5 +1,6 @@
 <template>
 	<div id="home">
+			<LandingBanner></LandingBanner>
 			<Mainstats></Mainstats>
 			<Terms></Terms>
 	</div>
@@ -8,8 +9,9 @@
 <script>
 import Mainstats from '../components/mainStats'
 import Terms from '../components/Terms'
+import LandingBanner from '../components/landingBanner'
 export default {
-		components: { Mainstats,Terms }
+		components: { Mainstats,Terms,LandingBanner }
 }
 </script>
 <style>
