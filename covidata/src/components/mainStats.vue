@@ -1,19 +1,27 @@
 <template>
 	<div class="mainStats">
+    <br>
+    <h1> Daily Totals</h1>
     <vs-row class="full-row"> 
-      <vs-col w="4" >
+      <vs-col w="3" >
           <vs-card>
-              This is a test card
+              <template #text>
+                <h3>This is a card</h3>
+              </template>
           </vs-card>
       </vs-col>
-      <vs-col w="4">
+      <vs-col w="3">
           <vs-card>
-              This is a test card
+            <template #text>
+              <h3>This is a card</h3>
+            </template>
           </vs-card>
       </vs-col>
-      <vs-col w="4" >
+      <vs-col w="3" >
           <vs-card>
-              This is a test card
+              <template #text>
+                <h3>This is a card</h3>
+              </template>
           </vs-card>
       </vs-col>
     </vs-row>
@@ -44,29 +52,29 @@ export default {
 </script>
 
 <style>
+.mainStats {
+  margin-left: 20px;
+  margin-right: 20px;
+}
 .vs-col {
   text-align: center;
 }
 .vs-card {
   margin-top: 100px;
-  margin-left: 80px;
+  margin-left: 50%;
   height: 400px;
   max-width: 500px;
   
 }
 .full-row {
-  padding-left: 50px;
-  padding-right: 100px;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   line-height: 40px;
 }
 .darker-bg {
   background-color:#D3D3D3;
 }
 .info-row {
-  padding-left: 50px;
-  padding-right: 100px;
   padding-bottom: 100px;
-  line-height: 40px;
+  line-height: 30px;
 }
 </style>

@@ -16,24 +16,30 @@
                     <vs-th>
                         Country
                     </vs-th >
-                    <vs-th sort @click="rawData = $vs.sortData($event, rawData, 'totalDeaths')">
+                    <vs-th>
+                        New Cases
+                    </vs-th >
+                    <vs-th>
                         Total Cases
                     </vs-th>
-                    <vs-th sort @click="rawData = $vs.sortData($event, rawData, 'totalDeaths')">
+                    <vs-th >
                         Total Deaths
                     </vs-th>
-                    <vs-th sort @click="rawData = $vs.sortData($event, rawData, 'totalRecovered')">
+                    <vs-th>
                         Total Recovered
                     </vs-th>
                 </vs-tr>
             </template>
             <template #tbody>
                 <vs-tr :key="i" v-for="(r, i) in $vs.getPage(rawData, page, max)" :data="r" :is-selected="selected == r" >
-                    <vs-td >
+                    <vs-td>
                         {{ r.country}}
                     </vs-td>
                      <vs-td >
-                        {{ r.cases.total.toString()}}
+                        {{ r.cases.new }}
+                    </vs-td>
+                     <vs-td >
+                        {{ r.cases.total }}
                     </vs-td>
                      <vs-td >
                         {{ r.deaths.total}}
@@ -47,11 +53,6 @@
                 <vs-pagination v-model="page" :length="$vs.getLength(rawData, max)" />
             </template>
         </vs-table>
-        <span class="data">
-            <pre>
-                {{ selected ? selected : 'Worlwide Statistics' }}
-            </pre>
-      </span>
     </div>
 </template>
 
@@ -62,7 +63,7 @@ export default {
     data() {
         return {
             page:1,
-            max:20,
+            max:15,
             search:'',
             selected:null,
             searchString:'',
@@ -100,12 +101,17 @@ div.vs-table__th__content {
     
 }
 .vs-table__td {
-    line-height: 20px;
+    line-height: 17px;
    text-align: left;
 
 }
 .vs-input-content {
     justify-content: center;
 }
-
+.footer {
+    height: 300px;
+    background: rgb(236,236,236);
+    background: linear-gradient(117deg, rgba(236,236,236,1) 0%, rgba(238,238,238,0.958420868347339) 88%);
+    width: 100%;
+}
 </style>

@@ -48,14 +48,14 @@
 
 <style>
 .vs-navbar {
-  max-height: 100px;
+  max-height: 60px;
   overflow: hidden;
 }
 
 #big-logo {
   position: relative !important;
   height: 150px;
-  width:150px;
+  width: 120px;
   margin-left: 100px;
   padding-top: 10px;
 
