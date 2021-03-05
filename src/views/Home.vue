@@ -1,17 +1,17 @@
 <template>
 	<div id="home">
 			<LandingBanner></LandingBanner>
-			<Mainstats></Mainstats>
 			<Terms></Terms>
+			<MainTable></MainTable>		
 	</div>
 </template>
 
 <script>
-import Mainstats from '../components/mainStats'
 import Terms from '../components/Terms'
 import LandingBanner from '../components/landingBanner'
+import MainTable from '../../src/components/mainTable'
 export default {
-		components: { Mainstats,Terms,LandingBanner }
+		components: { Terms,LandingBanner, MainTable }
 }
 </script>
 <style>

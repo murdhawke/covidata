@@ -16,6 +16,11 @@ export default {
 <style >
 #app {
   padding: 0;
+  margin-left:  10%;
+  margin-right: 10%;
+
+  overflow: hidden;
+  justify-content: center;
 }
 h1 {
     font-family: 'Open Sans', sans-serif;
